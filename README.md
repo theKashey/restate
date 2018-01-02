@@ -147,6 +147,59 @@ Using the `routeDispatch` you can control how dispatches bubbles **up**.
 ## Examples
  Check out example-todo in packages.
 
+### Before all the things - map Todos 
+```js
+const mapStateToProps = state => ({
+  todos: getVisibleTodos(state.todos, state.visibilityFilter),
+});
+
+const mapDispatchToProps = {
+  onTodoClick: toggleTodo,
+};
+
+export const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
+```
+
+Next - render Todo...
+
+### The original Redux-todo-list 
+```js
+const TodoListRedux = ({ todos, onTodoClick }) => (
+  <ul>{todos.map(todo => 
+      // Here redux "ends". You have to map onClick in magic way
+      <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+  )}</ul>
+);
+```
+
+### The remap variant
+```js
+
+// direct mapping. Here is nothing more that Todo need
+const mapStateToProps = state => state;
+const mapDispatchToProps = {
+  onClick: toggleTodo,
+};
+const ConnectedTodo = connect(mapStateToProps, mapDispatchToProps)(Todo);
+
+// Focusing on Todo-only
+const TodoMapped = reduxFocus(
+  (state, props) => state.todos[props.id],
+  // Todo should just dispatch an event. All logic is here.
+  (dispatch, event, props) => dispatch({ ...event, id: props.id }),
+)(ConnectedTodo);
+  
+const TodoList = ({ todos, onTodoClick }) => <ul>{todos.map(todo => 
+   <TodoMapped key={todo.id} id={todo.id} />
+)}</ul>;
+```
+
+The variant with `Remap` is twice longer, but it will run faster out of the box.
+No Todo will be re-rendered if any other gonna to change
+Todo will become `isolated` from rest of application.
+
+[![Animation](images/restate-todo.gif?raw=true "Todolist")]
+
 ## Licence
 
 MIT
