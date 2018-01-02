@@ -1,0 +1,48 @@
+{
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "dev": "yarn bootstrap && yarn build && lerna-watch",
+    "build": "lerna-build",
+    "format": "prettier --write \"**/*.{js,md,ts,json}\" *.{js,md,ts,json}",
+    "lint": "eslint . --fix",
+    "prepublishOnly": "yarn build",
+    "prebuild": "rm -rf packages/*/lib",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,md,ts,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.7.5",
+    "babel-core": "^6.7.6",
+    "babel-eslint": "^8.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.5.0",
+    "conventional-changelog": "^1.1.7",
+    "conventional-github-releaser": "^2.0.0",
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.4.0",
+    "lerna": "^2.5.1",
+    "lerna-tools": "^0.0.3",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.9.2"
+  },
+  "dependencies": {
+    "react": "^16.2.0"
+  }
+}

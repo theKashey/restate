@@ -1,0 +1,55 @@
+Arguments: 
+  /Users/akorzunov/.nvm/versions/node/v9.0.0/bin/node /Users/akorzunov/.yarn/bin/yarn.js
+
+PATH: 
+  /Users/akorzunov/.yarn/bin:/Users/akorzunov/.nvm/versions/node/v9.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+
+Yarn version: 
+  1.0.2
+
+Node version: 
+  9.0.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "todos",
+    "version": "0.0.1",
+    "private": true,
+    "devDependencies": {
+      "enzyme": "^2.8.2",
+      "react-addons-test-utils": "^15.5.1",
+      "react-scripts": "^1.0.2"
+    },
+    "dependencies": {
+      "prop-types": "^15.5.10",
+      "react": "^15.5.0",
+      "react-dom": "^15.5.0",
+      "react-redux": "^5.0.5",
+      "redux": "^3.5.2",
+      
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "eject": "react-scripts eject",
+      "test": "react-scripts test"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  SyntaxError: /Users/akorzunov/dev/Z/mellis/github/utils/restate/packages/example-todo/package.json: Unexpected token } in JSON at position 347
+      at JSON.parse (<anonymous>)
+      at /Users/akorzunov/.yarn/lib/cli.js:797:57
+      at Generator.next (<anonymous>)
+      at step (/Users/akorzunov/.yarn/lib/cli.js:92:30)
+      at /Users/akorzunov/.yarn/lib/cli.js:103:13
+      at <anonymous>
