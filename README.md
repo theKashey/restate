@@ -1,6 +1,6 @@
 # Restate
 
-The base layer for redux composition.
+Restate, re-store, redux-focus, re-dux... Oh, it was not easy to name _The base layer for a redux composition_.
 
 ## The problem
 
