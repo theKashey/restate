@@ -1,6 +1,14 @@
 # Restate
 
-Restate, re-store, redux-focus, re-dux... Oh, it was not easy to name _The base layer for a redux composition_.
+Restate, re-store, redux-focus, redux-lenses, re-dux... Oh, it was not easy to name _The base layer for a redux composition_.
+
+The goal of Restate is to provide hierarchical, decoupled, isolated synthetic stores, and make your application faster and simpler.
+
+```js
+import reduxRestate from 'redux-restate'; // to low-level redux manupulations
+import reactReduxRestate from 'react-redux-restate'; // to work with multiple stores
+import reactReduxFocus from 'react-redux-focus'; // to focus a lens on a single store 
+```  
 
 ## The problem
 
