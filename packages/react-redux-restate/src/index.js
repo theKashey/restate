@@ -16,8 +16,10 @@ const getStores = (stores, props, context) => {
       if (store) {
         result[key] = store;
       } else {
-        throw new Error(`restate: unable to found store {$value} for key ${key}`);
+        throw new Error(`restate: unable to found store "${value}" for key "${key}"`);
       }
+    } else {
+      result[key] = value;
     }
   });
   return result;
@@ -45,7 +47,7 @@ const restate = (baseStores, composeState, routeDispatch, options = {}) => Wrapp
     constructor(props, context) {
       super();
       this.stores = {
-        ...getStores(baseStores, this.props, this.context),
+        ...getStores(baseStores, props, context),
         default: props[storeKey] || context[storeKey],
       };
     }

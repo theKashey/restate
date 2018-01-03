@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`React-redux-restate should map props 1`] = `
+Object {
+  "children": Array [
+    1,
+    " ",
+    "Doctor Who",
+  ],
+  "id": "k1",
+  "onClick": [Function],
+}
+`;
+
+exports[`React-redux-restate should map props 2`] = `
+Object {
+  "children": Array [
+    2,
+    " ",
+    "Doctor Who",
+  ],
+  "id": "k2",
+  "onClick": [Function],
+}
+`;
+
+exports[`React-redux-restate should map props 3`] = `
+Array [
+  Object {
+    "id": 1,
+    "type": "EVENT",
+  },
+  Object {
+    "id": 2,
+    "type": "EVENT",
+  },
+]
+`;
+
+exports[`React-redux-restate should map props 4`] = `Array []`;

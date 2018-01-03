@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "changelog": "conventional-changelog -p angular -r2 && conventional-github-releaser -p angular",
     "dev": "yarn bootstrap && yarn build && lerna-watch",
     "build": "lerna-build",
     "format": "prettier --write \"**/*.{js,md,ts,json}\" *.{js,md,ts,json}",
     "lint": "eslint . --fix",
     "prepublishOnly": "yarn build",
     "prebuild": "rm -rf packages/*/lib",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test": "jest --no-cache"
   },
   "lint-staged": {
     "*.{js,md,ts,json}": [
@@ -40,9 +42,30 @@
     "lerna": "^2.5.1",
     "lerna-tools": "^0.0.3",
     "lint-staged": "^6.0.0",
-    "prettier": "^1.9.2"
+    "prettier": "^1.9.2",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-mock-store": "^1.4.0"
+  },
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "<rootDir>"
+    ],
+    "setupFiles": [
+      "<rootDir>/__tests/setupTests.js"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/__tests/babel.js"
+    }
   },
   "dependencies": {
+    "babel-jest": "^22.0.4",
+    "chai": "^4.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^22.0.4",
     "react": "^16.2.0"
   }
 }

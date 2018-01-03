@@ -7,8 +7,8 @@ The goal of Restate is to provide hierarchical, decoupled, isolated synthetic st
 ```js
 import reduxRestate from 'redux-restate'; // to low-level redux manupulations
 import reactReduxRestate from 'react-redux-restate'; // to work with multiple stores
-import reactReduxFocus from 'react-redux-focus'; // to focus a lens on a single store 
-```  
+import reactReduxFocus from 'react-redux-focus'; // to focus a lens on a single store
+```
 
 ## The problem
 
@@ -136,6 +136,12 @@ const FocusedComponent = reactReduxFocus(
 
 The same as react-redux-restate, but for a single store.
 
+## composeState
+
+Restate will perform shallowEqual compare for the old and the new states.
+Please use `reselect` or another memoization library to keep branches unchanged.
+Otherwise - specify `areStatesEqual` option.
+
 ## Multiple store case
 
 It is absolutely common, that some parts of application can be **absolutely** independent.
@@ -153,9 +159,62 @@ Using the `routeDispatch` you can control how dispatches bubbles **up**.
 * You can choose which dispatch to call - the original one, from a nearest (default) store, or the parent one (the Application level)
 
 ## Examples
- Check out example-todo in packages.
 
-### Before all the things - map Todos 
+#### Isolate middle of application
+
+```js
+import reactReduxRestate, { reprovider } from 'react-redux-restate';
+const Reprovider = reprovider('realStore');
+const RestoreStore = reprovider('store', 'realStore');
+
+const RestateStore = reactReduxRestate(
+  {}, // no extra stores
+  states => focusOnSomeBranchIn(states.default),
+  (dispatch, event, props) => dispatch.default({ ...event, id: props.id }),
+);
+
+const RestateWithOriginalStore = reactReduxRestate(
+  { realStore: 'realStore' }, // connect the real store back
+  states => mixStates(states.default, states.realStore),
+  (dispatch, event, props) => dispatch.realStore({ ...event, id: props.id }),
+);
+
+const RestateForOriginalStore = reactReduxRestate(
+  {}, // no extra stores
+  states => focusOnSomeBranchIn(states.default),
+  (dispatch, event, props) => dispatch.default({ ...event, id: props.id }),
+  {
+    storeKey: 'realStore', // use `realStore` as default
+  },
+);
+
+const Application = () => (
+  // put redux store inside
+  <Provider store={myReduxStore}>
+    // re-export current store as `realStore
+    <Reprovider>
+      // switch to syntetic redux
+      <RestateStore>
+        <SomePartOfAnApplication>
+          // restore original store
+          <RestoreStore>
+            <WorkWithOriginalStore />
+          </RestoreStore>
+          // or use restate with 2 stores connected
+          <RestateWithOriginalStore />
+          // or connect restate to the real store
+          <RestateForOriginalStore />
+        </SomePartOfAnApplication>
+      </RestateStore>
+    </Reprovider>
+  </Provider>
+);
+```
+
+Also Check out example-todo in packages.
+
+### Before all the things - map Todos
+
 ```js
 const mapStateToProps = state => ({
   todos: getVisibleTodos(state.todos, state.visibilityFilter),
@@ -170,19 +229,22 @@ export const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(Todo
 
 Next - render Todo...
 
-### The original Redux-todo-list 
+### The original Redux-todo-list
+
 ```js
 const TodoListRedux = ({ todos, onTodoClick }) => (
-  <ul>{todos.map(todo => 
+  <ul>
+    {todos.map(todo => (
       // Here redux "ends". You have to map onClick in magic way
       <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
-  )}</ul>
+    ))}
+  </ul>
 );
 ```
 
 ### The remap variant
-```js
 
+```js
 // direct mapping. Here is nothing more that Todo need
 const mapStateToProps = state => state;
 const mapDispatchToProps = {
@@ -196,10 +258,8 @@ const TodoMapped = reduxFocus(
   // Todo should just dispatch an event. All logic is here.
   (dispatch, event, props) => dispatch({ ...event, id: props.id }),
 )(ConnectedTodo);
-  
-const TodoList = ({ todos, onTodoClick }) => <ul>{todos.map(todo => 
-   <TodoMapped key={todo.id} id={todo.id} />
-)}</ul>;
+
+const TodoList = ({ todos, onTodoClick }) => <ul>{todos.map(todo => <TodoMapped key={todo.id} id={todo.id} />)}</ul>;
 ```
 
 The variant with `Remap` is twice longer, but it will run faster out of the box.

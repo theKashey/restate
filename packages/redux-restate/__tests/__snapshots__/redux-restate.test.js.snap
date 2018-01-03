@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`redux-restate smoke test 1`] = `
+Array [
+  Object {
+    "id": 1,
+    "type": "event",
+  },
+  Object {
+    "store": 1,
+    "type": "event",
+  },
+]
+`;
+
+exports[`redux-restate smoke test 2`] = `
+Array [
+  Object {
+    "id": 1,
+    "type": "event",
+  },
+  Object {
+    "store": 2,
+    "type": "event",
+  },
+]
+`;

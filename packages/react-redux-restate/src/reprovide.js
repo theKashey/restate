@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createProvider } from 'react-redux';
 
@@ -14,7 +14,7 @@ const reprovide = (newName, oldName = 'store') => {
     };
 
     static propTypes = {
-      children: React.node,
+      children: PropTypes.node,
     };
 
     constructor(props, context) {
