@@ -1,9 +1,10 @@
 # Restate
+
 > Restate, re-store, redux-focus, redux-lenses, re-dux, redux-tree... Oh, it was not easy to name _The base layer for a redux composition_.
 
 The goal of Restate is to provide hierarchical, decoupled, isolated synthetic stores, and make your application faster and simpler.
-Restate just creates a new branch, from a original store, allowing you to control it, and use __composition
-on redux__-level. Before - the forbidden thing. 
+Restate just creates a new branch, from a original store, allowing you to control it, and use **composition
+on redux**-level. Before - the forbidden thing.
 
 ```js
 import reduxRestate from 'redux-restate'; // to low-level redux manupulations
@@ -84,8 +85,8 @@ import restate from 'redux-restate';
 const newStore = restate({ store: baseStore }, composeState, routeDispatch, options);
 ```
 
-- `composeState(states):NewState` get one one more `states` as input, produce the output
-- `routeDispatch(dispatchers, event)` get one one more dispatch as input, then call the disired one with even, also provided.
+* `composeState(states):NewState` get one one more `states` as input, produce the output
+* `routeDispatch(dispatchers, event)` get one one more dispatch as input, then call the disired one with even, also provided.
 
 ### react-redux-restate
 
@@ -102,9 +103,9 @@ const RestatedComponent = reactReduxRestate(
 The same as redux-restate, but in form of React HOC.
 The default store, accessible with storeKey, is available as .default for next functions.
 
-- `composeState(states, event, props)` get one one more `states` as input, plus props, produce the output
+* `composeState(states, event, props)` get one one more `states` as input, plus props, produce the output
 
-- `routeDispatch(dispatchers, event, props)` dispatch as input, plus props, then call the disired one with even, also provided.
+* `routeDispatch(dispatchers, event, props)` dispatch as input, plus props, then call the disired one with even, also provided.
 
 ### reproviding a state
 
@@ -128,8 +129,8 @@ const FocusedComponent = reactReduxFocus(
 
 The same as react-redux-restate, but for a single store.
 
-- `composeState(state, props): newState` - focus will work only with one state
-- `routeDispatch(dispatch, props)`
+* `composeState(state, props): newState` - focus will work only with one state
+* `routeDispatch(dispatch, props)`
 
 ## Optimization
 
@@ -158,6 +159,7 @@ Using the `routeDispatch` you can control how dispatches bubbles **up**.
 #### Deepdive with Restart instantly
 
 Connect all `restate` to the original store, just for original store lensing and optimization.
+
 ```js
  import {createProvider} from 'react-redux'
  import reactReduxRestate from 'react-redux-restate';
@@ -170,7 +172,9 @@ Connect all `restate` to the original store, just for original store lensing and
 ```
 
 #### Isolate middle of application
+
 Provide store, reprovide store, restore original store...
+
 ```js
 import reactReduxRestate, { reprovider } from 'react-redux-restate';
 const Reprovider = reprovider('realStore');

@@ -7,11 +7,20 @@ const replaceReducer = () => {
   throw new Error('Dont call replaceReducer on synthetic store.');
 };
 
-const getDispatches = stores =>
-  Object.keys(stores).reduce((acc, storeKey) => {
-    acc[storeKey] = stores[storeKey].dispatch;
-    return acc;
-  }, {});
+const getDispatches = stores => {
+  const result = {
+    called: null,
+    returnedValue: null,
+    next: Object.keys(stores).reduce((acc, storeKey) => {
+      acc[storeKey] = event => {
+        result.called = storeKey;
+        result.returnedValue = stores[storeKey].dispatch(event);
+      };
+      return acc;
+    }, {}),
+  };
+  return result;
+};
 
 const getStates = stores =>
   Object.keys(stores).reduce((acc, storeKey) => {
@@ -36,7 +45,15 @@ const restate = (stores, createState, onDispatch, options = {}) => {
   const subscriptions = [];
   const { subscribe, trigger } = createSubscription();
 
-  const dispatch = event => onDispatch(getDispatches(stores), event);
+  const dispatch = event => {
+    const dispatchers = getDispatches(stores);
+    onDispatch(dispatchers.next, event);
+    if (!dispatchers.called) {
+      console.error('No next dispatch was called at', onDispatch);
+      throw new Error('No next dispatch called');
+    }
+    return dispatchers.returnedValue;
+  };
 
   const getState = () => currentState;
 
