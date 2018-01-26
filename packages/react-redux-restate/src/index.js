@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { createProvider } from 'react-redux';
+import {createProvider} from 'react-redux';
 import reduxRestate from 'redux-restate';
 import hoistStatics from 'hoist-react-statics';
 import displayName from 'react-display-name';
@@ -50,6 +50,7 @@ const restate = (baseStores, composeState, routeDispatch, options = {}) => Wrapp
         ...getStores(baseStores, props, context),
         default: props[storeKey] || context[storeKey],
       };
+      this.propsOverride = null;
     }
 
     componentWillMount() {
@@ -60,8 +61,14 @@ const restate = (baseStores, composeState, routeDispatch, options = {}) => Wrapp
       this.store.unsubscribe();
     }
 
-    composeState = stores => composeState(stores, this.props);
-    routeDispatch = (dispatches, event) => routeDispatch(dispatches, event, this.props);
+    componentWillReceiveProps(nextProps) {
+      this.propsOverride = nextProps;
+      this.store.update();
+      this.propsOverride = null;
+    }
+
+    composeState = stores => composeState(stores, this.propsOverride || this.props);
+    routeDispatch = (dispatches, event) => routeDispatch(dispatches, event, this.propsOverride || this.props);
 
     render() {
       return (
@@ -78,6 +85,6 @@ const restate = (baseStores, composeState, routeDispatch, options = {}) => Wrapp
   return RestateComponent;
 };
 
-export { reprovide };
+export {reprovide};
 
 export default restate;
