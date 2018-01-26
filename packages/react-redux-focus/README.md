@@ -97,6 +97,18 @@ const FocusedComponent = reactReduxFocus(
 )(WrappedComponent);
 ```
 
+Oh as HOC
+```js
+import { ReduxFocus } from 'react-redux-focus';
+
+<ReduxFocus
+  focus={(state, props) => state.todos[props.id]}
+  onDispatch={(dispatch, event, props) => dispatch({ ...event, id: props.id })}
+>
+    <WrappedComponent />
+</ReduxFocus>
+```
+
 The same as react-redux-restate, but for a single store.
 
 ## Licence
