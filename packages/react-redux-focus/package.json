@@ -1,6 +1,6 @@
 {
   "name": "react-redux-focus",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "",
   "main": "lib/index.js",
   "types": "react-redux-focus.d.ts",
@@ -26,6 +26,6 @@
   },
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react-redux-restate": "^1.0.3"
+    "react-redux-restate": "^1.1.0"
   }
 }
