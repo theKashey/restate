@@ -37,9 +37,9 @@ const restate = (stores, createState, onDispatch, options = {}) => {
     throw new Error('Please provide a onDispatch function');
   }
 
-  const nextState = () => createState(getStates(stores));
+  const nextState = (oldState) => createState(getStates(stores)) || oldState;
 
-  let currentState = nextState();
+  let currentState = nextState({});
 
   let updatePending = false;
   const subscriptions = [];
@@ -63,7 +63,7 @@ const restate = (stores, createState, onDispatch, options = {}) => {
   const triggerUpdate = () => {
     updatePending = false;
     const lastState = currentState;
-    currentState = nextState();
+    currentState = nextState(currentState);
     if (areStatesEqual(lastState, currentState)) {
       trigger();
     }
