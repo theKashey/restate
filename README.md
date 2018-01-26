@@ -75,6 +75,7 @@ Thus makes redux composable, and enabled the component way.
 * redux-restate for redux level.
 * react-redux-retate for react multy-state case.
 * react-redux-focus for single store case.
+* recct-redux-semaphore to control update propagation.
 
 # Usage
 
@@ -107,6 +108,8 @@ The default store, accessible with storeKey, is available as .default for next f
 
 * `routeDispatch(dispatchers, event, props)` dispatch as input, plus props, then call the disired one with even, also provided.
 
+> Note: if composeState will return _undefined_ the state will not change.
+
 ### reproviding a state
 
 Sometimes it is worth to keep the old store. Just `save` it using a different name.
@@ -126,11 +129,42 @@ const FocusedComponent = reactReduxFocus(
   (dispatch, event, props) => dispatch({ ...event, id: props.id }),
 )(WrappedComponent);
 ```
+Or you can use Component approach
+```js
+import { ReduxFocus } from 'react-redux-focus';
+
+<ReduxFocus
+  focus={(state, props) => state.todos[props.id]}
+  onDispatch={(dispatch, event, props) => dispatch({ ...event, id: props.id })}
+>
+    <WrappedComponent />
+</ReduxFocus>
+```
 
 The same as react-redux-restate, but for a single store.
 
 * `composeState(state, props): newState` - focus will work only with one state
 * `routeDispatch(dispatch, props)`
+
+### react-redux-semaphore
+HOC approach.
+```js
+import reduxSemaphore from 'react-redux-semaphore';
+ 
+const WillUseOldStateUnlessConditionAreMet = reduxSemaphore(
+  (state, props) => isValid(store.importantData)
+)(TargetComponent)
+```
+
+Component approach
+```js
+import {ReduxSemaphore} from 'react-redux-semaphore';
+ <ReduxSemaphore
+  condition={(state, props) => isValid(store.importantData)}
+ >
+   <TargetComponent />
+ </ReduxSemaphore>
+```
 
 ## Optimization
 

@@ -1,0 +1,31 @@
+{
+  "name": "react-redux-semaphore",
+  "version": "1.0.3",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "react-redux-semaphore.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "tree",
+    "update",
+    "isolate",
+    "lense"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thekashey/restate.git"
+  },
+  "author": "Anton Korzunov <thekashey@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react-redux-restate": "^1.0.3"
+  }
+}
