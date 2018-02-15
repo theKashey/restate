@@ -11,7 +11,7 @@ declare module 'react-redux-focus' {
   export default function restate<T>(
     composeState: (state: any, props: any) => any,
     routeDispatch: (dispatch: any, event: any, props: any) => void,
-    options: {
+    options: () => {
       async?: boolean;
       areStatesEqual?: (oldStore: any, newStore: any) => boolean;
     },

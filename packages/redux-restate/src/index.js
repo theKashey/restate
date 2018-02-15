@@ -24,11 +24,12 @@ const getDispatches = stores => {
 
 const getStates = stores =>
   Object.keys(stores).reduce((acc, storeKey) => {
-    acc[storeKey] = stores[storeKey].getState();
+    acc[storeKey] = stores[storeKey] && stores[storeKey].getState();
     return acc;
   }, {});
 
-const restate = (stores, createState, onDispatch, options = {}) => {
+const restate = (stores, createState, onDispatch, initialOptions = {}) => {
+  let options = initialOptions;
   if (typeof createState !== 'function') {
     throw new Error('Please provide a createState function');
   }
@@ -43,7 +44,7 @@ const restate = (stores, createState, onDispatch, options = {}) => {
 
   let updatePending = false;
   const subscriptions = [];
-  const { subscribe, trigger } = createSubscription();
+  const {subscribe, trigger} = createSubscription();
 
   const dispatch = event => {
     const dispatchers = getDispatches(stores);
@@ -57,34 +58,49 @@ const restate = (stores, createState, onDispatch, options = {}) => {
 
   const getState = () => currentState;
 
-  const areStatesEqual = (prev, next) =>
-    (options.areStatesEqual && options.areStatesEqual(prev, next)) || shallowequal(prev, next);
+  const areStatesEqual = (prev, next) => {
+    const areEqual = (options.areStatesEqual && options.areStatesEqual(prev, next));
+    return typeof areEqual === "undefined" ? shallowequal(prev, next) : areEqual;
+  }
 
-  const triggerUpdate = () => {
-    updatePending = false;
-    const lastState = currentState;
-    currentState = nextState(currentState);
-    if (areStatesEqual(lastState, currentState)) {
-      trigger();
-    }
-  };
-
-  const update = () => {
+  const onStateUpdate = () => {
     if (options.async) {
       if (!updatePending) {
-        updatePending = Promise.resolve().then(triggerUpdate);
+        updatePending = Promise.resolve().then(() => {
+          updatePending = null;
+          trigger();
+        });
       }
+    } else if (options.onUpdate) {
+      options.onUpdate(trigger);
     } else {
-      triggerUpdate();
+      trigger()
+    }
+  }
+
+  const triggerUpdate = () => {
+    const lastState = currentState;
+    currentState = nextState(currentState);
+    if (!areStatesEqual(lastState, currentState)) {
+      onStateUpdate();
     }
   };
 
   const initialize = () => {
-    Object.keys(stores).forEach(storeKey => subscriptions.push(stores[storeKey].subscribe(update)));
+    Object.keys(stores)
+      .filter(key => stores[key])
+      .forEach(storeKey => subscriptions.push(stores[storeKey].subscribe(triggerUpdate)));
   };
 
   const unsubscribe = () => {
     subscriptions.forEach(unsubscribe => unsubscribe());
+  };
+
+  const replaceOptions = (newOptions) => {
+    options = {
+      ...options,
+      newOptions
+    }
   };
 
   initialize();
@@ -97,7 +113,8 @@ const restate = (stores, createState, onDispatch, options = {}) => {
     [$$observable]: createObservableFor(subscribe, getState),
 
     unsubscribe,
-    update,
+    update: triggerUpdate,
+    replaceOptions
   };
 };
 

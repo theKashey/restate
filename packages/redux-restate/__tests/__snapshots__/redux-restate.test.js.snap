@@ -7,6 +7,10 @@ Array [
     "type": "event",
   },
   Object {
+    "id": 1,
+    "type": "event",
+  },
+  Object {
     "store": 1,
     "type": "event",
   },
@@ -15,6 +19,10 @@ Array [
 
 exports[`redux-restate smoke test 2`] = `
 Array [
+  Object {
+    "id": 1,
+    "type": "event",
+  },
   Object {
     "id": 1,
     "type": "event",

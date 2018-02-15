@@ -1,9 +1,9 @@
 {
-  "name": "react-redux-semaphore",
+  "name": "react-redux-unbranch",
   "version": "1.1.0",
   "description": "",
   "main": "lib/index.js",
-  "types": "react-redux-semaphore.d.ts",
+  "types": "react-redux-unbranch.d.ts",
   "scripts": {
     "test": "echo \"tests are on repo level\" && exit 1"
   },
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react-redux-restate": "^1.1.0"
+    "react-redux-restate": "^1.1.0",
+    "shallowequal": "^1.0.2"
   }
 }

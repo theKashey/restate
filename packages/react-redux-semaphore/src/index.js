@@ -23,13 +23,15 @@ const semaphoreSecret = {
   }
 };
 
-const ReduxSemaphore = ({condition, children, ...rest}) => {
-  return <ComponentSemaphore {...semaphoreSecret} condition={condition} componentProps={rest}>{children}</ComponentSemaphore>
-};
+const simpleLock = (stores, props) => !props.locked;
+
+const ReduxSemaphore = ({condition = simpleLock, children, ...rest}) =>
+   <ComponentSemaphore {...semaphoreSecret} condition={condition} componentProps={rest}>{children}</ComponentSemaphore>
 
 ReduxSemaphore.propTypes = {
-  condition: PropTypes.func.isRequired,
-  children: PropTypes.node
+  condition: PropTypes.func,
+  children: PropTypes.node,
+  locked: PropTypes.bool
 };
 
 export {

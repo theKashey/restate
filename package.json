@@ -13,7 +13,9 @@
     "prepublishOnly": "yarn build",
     "prebuild": "rm -rf packages/*/lib",
     "precommit": "lint-staged",
-    "test": "jest --no-cache"
+    "test": "jest --no-cache",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "lint-staged": {
     "*.{js,md,ts,json}": [
@@ -46,7 +48,10 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-mock-store": "^1.4.0"
+    "redux-mock-store": "^1.4.0",
+    "@storybook/react": "^3.3.12",
+    "@storybook/addon-actions": "^3.3.12",
+    "@storybook/addon-links": "^3.3.12"
   },
   "jest": {
     "moduleDirectories": [
@@ -66,6 +71,10 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.0.4",
-    "react": "^16.2.0"
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
+    "react": "^16.2.0",
+    "react-redux-restate": "^1.1.0",
+    "storybook": "^1.0.0"
   }
 }

@@ -1,4 +1,5 @@
 # React-redux-focus
+> (a part of [restate](https://github.com/theKashey/restate) project)
 
 The base layer for redux composition.
 

@@ -120,6 +120,29 @@ const Reprovider = reprovide('new-store-name', 'old-store-name');
 const DefaultReprovider = reprovide('new-store-name'); // old will be `store`
 ```
 
+### Fork/Unfork
+There is a "standard way" to reprovide a state
+```js
+import {ForkReduxStore, UnforkReduxStore} from 'react-redux-restate';
+
+const App = () => (
+  <Provider state={state}>
+    <ForkReduxState>
+      // state "forked" into "global" state
+      <FocusOrRestateTheStore>
+        
+        // state is "altered" here      
+        
+        // you can always refer to "global" as a state key
+        <UnforkReduxState>
+          // state is reverted to the original
+        </UnforkReduxState>
+       </FocusOrRestateTheStore>
+    </ForkReduxState>
+  </Provider>        
+)
+```
+
 ### react-redux-focus
 
 ```js

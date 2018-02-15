@@ -12,6 +12,17 @@ For example you did update one data source, but could display (rerender) store o
 Redux semaphore could stop update propagation, providing the old state for nested components. 
 You can use react-redux-restate to join the old state, and the new state down the tree.
 
+Or you can just freeze ☃️ it out. 
+
+Let me cite the original Redux documentation:
+
+```text
+The original Flux pattern describes having multiple “stores” in an app, each one holding a different area of domain data. This can introduce issues such as needing to have one store “waitFor” another store to update. This is not necessary in Redux because the separation between data domains is already achieved by splitting a single reducer into smaller reducers.
+```
+
+react-redux-semaphore IS that `waitFor`.
+
+
 ## Usage
 
 HOC approach.
@@ -21,16 +32,30 @@ import reduxSemaphore from 'react-redux-semaphore';
 const WillUseOldStateUnlessConditionAreMet = reduxSemaphore(
   (state, props) => isValid(store.importantData)
 )(TargetComponent)
+
+
+const FreezableComponent = reduxSemaphore(
+  (state, props) => !props.isFreezed
+)(TargetComponent)
 ```
 
 Component approach
 ```js
 import {ReduxSemaphore} from 'react-redux-semaphore';
+const conditionFreeze =
  <ReduxSemaphore
   condition={(state, props) => isValid(store.importantData)}
  >
    <TargetComponent />
  </ReduxSemaphore>
+ 
+ 
+ const propFreeze =
+  <ReduxSemaphore
+     locked
+  >
+    <TargetComponent />
+  </ReduxSemaphore>
 ```
 
 ## Licence

@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "redux-restate.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"tests are on repo level\" && exit 1"
   },
   "keywords": [
     "redux",
@@ -21,6 +21,7 @@
   "author": "Anton Korzunov <thekashey@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "shallowequal": "^1.0.2"
+    "shallowequal": "^1.0.2",
+    "symbol-observable": "^1.2.0"
   }
 }
