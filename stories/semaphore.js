@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
-import {storiesOf} from '@storybook/react';
+import React, { Component } from 'react';
+import { storiesOf } from '@storybook/react';
 
 import DisplayCounter from './components/DisplayCounter';
 
-import {ReduxSemaphore} from '../packages/react-redux-semaphore/src';
-import {ReduxFocus} from '../packages/react-redux-focus/src';
+import { ReduxSemaphore } from '../packages/react-redux-semaphore/src';
+import { ReduxFocus } from '../packages/react-redux-focus/src';
 
 class SemaphoreTest extends Component {
   state = {
     counter: 0,
-    locked: false
-  }
+    locked: false,
+  };
 
   componentDidMount() {
-    this._tm = setInterval(() => this.setState(({counter}) => ({counter: counter + 1})), 100);
+    this._tm = setInterval(() => this.setState(({ counter }) => ({ counter: counter + 1 })), 100);
   }
 
   componentWillUnmount() {
@@ -24,30 +24,34 @@ class SemaphoreTest extends Component {
     return props;
   }
 
-  swapLock = () => this.setState(({locked}) => ({locked: !locked}))
+  swapLock = () => this.setState(({ locked }) => ({ locked: !locked }));
 
   render() {
     return (
       <div>
         <button onClick={this.swapLock}>{this.state.locked ? 'Unfreeze' : 'Freeze'}</button>
         <ReduxFocus focus={this.onCounter} counter={this.state.counter}>
-          <div>counter1: <DisplayCounter/></div>
+          <div>
+            counter1: <DisplayCounter />
+          </div>
           <ReduxSemaphore locked={this.state.locked}>
-            <div>counter2: <DisplayCounter/></div>
+            <div>
+              counter2: <DisplayCounter />
+            </div>
           </ReduxSemaphore>
         </ReduxFocus>
       </div>
-    )
+    );
   }
 }
 
 class SemaphoreTestCondition extends Component {
   state = {
-    counter: 0
-  }
+    counter: 0,
+  };
 
   componentDidMount() {
-    this._tm = setInterval(() => this.setState(({counter}) => ({counter: counter + 1})), 100);
+    this._tm = setInterval(() => this.setState(({ counter }) => ({ counter: counter + 1 })), 100);
   }
 
   componentWillUnmount() {
@@ -66,16 +70,20 @@ class SemaphoreTestCondition extends Component {
     return (
       <div>
         <ReduxFocus focus={this.onCounter} counter={this.state.counter}>
-          <div>counter1: <DisplayCounter/></div>
+          <div>
+            counter1: <DisplayCounter />
+          </div>
           <ReduxSemaphore condition={this.onCondition}>
-            <div>counter2: <DisplayCounter/></div>
+            <div>
+              counter2: <DisplayCounter />
+            </div>
           </ReduxSemaphore>
         </ReduxFocus>
       </div>
-    )
+    );
   }
 }
 
 storiesOf('Semaphore', module)
-  .add('Freeze/unfreeze', () => <SemaphoreTest/>)
-  .add('Condition', () => <SemaphoreTestCondition/>)
+  .add('Freeze/unfreeze', () => <SemaphoreTest />)
+  .add('Condition', () => <SemaphoreTestCondition />);

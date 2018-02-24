@@ -1,17 +1,15 @@
-import React, {Component} from 'react'
-
+import React, { Component } from 'react';
 
 class StopUpdate extends Component {
   counter = 0;
 
-  shouldComponentUpdate(){
+  shouldComponentUpdate() {
     return false;
   }
 
   render() {
-    return <div>{this.props.children}</div>
+    return <div>{this.props.children}</div>;
   }
 }
 
-
-export default StopUpdate
+export default StopUpdate;

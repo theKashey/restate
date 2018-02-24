@@ -121,26 +121,23 @@ const DefaultReprovider = reprovide('new-store-name'); // old will be `store`
 ```
 
 ### Fork/Unfork
+
 There is a "standard way" to reprovide a state
+
 ```js
-import {ForkReduxStore, UnforkReduxStore} from 'react-redux-restate';
+import { ForkReduxStore, UnforkReduxStore } from 'react-redux-restate';
 
 const App = () => (
   <Provider state={state}>
     <ForkReduxState>
       // state "forked" into "global" state
       <FocusOrRestateTheStore>
-        
-        // state is "altered" here      
-        
-        // you can always refer to "global" as a state key
-        <UnforkReduxState>
-          // state is reverted to the original
-        </UnforkReduxState>
-       </FocusOrRestateTheStore>
+        // state is "altered" here // you can always refer to "global" as a state key
+        <UnforkReduxState>// state is reverted to the original</UnforkReduxState>
+      </FocusOrRestateTheStore>
     </ForkReduxState>
-  </Provider>        
-)
+  </Provider>
+);
 ```
 
 ### react-redux-focus
@@ -152,7 +149,9 @@ const FocusedComponent = reactReduxFocus(
   (dispatch, event, props) => dispatch({ ...event, id: props.id }),
 )(WrappedComponent);
 ```
+
 Or you can use Component approach
+
 ```js
 import { ReduxFocus } from 'react-redux-focus';
 
@@ -160,8 +159,8 @@ import { ReduxFocus } from 'react-redux-focus';
   focus={(state, props) => state.todos[props.id]}
   onDispatch={(dispatch, event, props) => dispatch({ ...event, id: props.id })}
 >
-    <WrappedComponent />
-</ReduxFocus>
+  <WrappedComponent />
+</ReduxFocus>;
 ```
 
 The same as react-redux-restate, but for a single store.
@@ -170,23 +169,24 @@ The same as react-redux-restate, but for a single store.
 * `routeDispatch(dispatch, props)`
 
 ### react-redux-semaphore
+
 HOC approach.
+
 ```js
 import reduxSemaphore from 'react-redux-semaphore';
- 
-const WillUseOldStateUnlessConditionAreMet = reduxSemaphore(
-  (state, props) => isValid(store.importantData)
-)(TargetComponent)
+
+const WillUseOldStateUnlessConditionAreMet = reduxSemaphore((state, props) => isValid(store.importantData))(
+  TargetComponent,
+);
 ```
 
 Component approach
+
 ```js
-import {ReduxSemaphore} from 'react-redux-semaphore';
- <ReduxSemaphore
-  condition={(state, props) => isValid(store.importantData)}
- >
-   <TargetComponent />
- </ReduxSemaphore>
+import { ReduxSemaphore } from 'react-redux-semaphore';
+<ReduxSemaphore condition={(state, props) => isValid(store.importantData)}>
+  <TargetComponent />
+</ReduxSemaphore>;
 ```
 
 ## Optimization

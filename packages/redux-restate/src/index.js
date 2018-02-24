@@ -38,13 +38,13 @@ const restate = (stores, createState, onDispatch, initialOptions = {}) => {
     throw new Error('Please provide a onDispatch function');
   }
 
-  const nextState = (oldState) => createState(getStates(stores)) || oldState;
+  const nextState = oldState => createState(getStates(stores)) || oldState;
 
   let currentState = nextState({});
 
   let updatePending = false;
   const subscriptions = [];
-  const {subscribe, trigger} = createSubscription();
+  const { subscribe, trigger } = createSubscription();
 
   const dispatch = event => {
     const dispatchers = getDispatches(stores);
@@ -59,9 +59,9 @@ const restate = (stores, createState, onDispatch, initialOptions = {}) => {
   const getState = () => currentState;
 
   const areStatesEqual = (prev, next) => {
-    const areEqual = (options.areStatesEqual && options.areStatesEqual(prev, next));
-    return typeof areEqual === "undefined" ? shallowequal(prev, next) : areEqual;
-  }
+    const areEqual = options.areStatesEqual && options.areStatesEqual(prev, next);
+    return typeof areEqual === 'undefined' ? shallowequal(prev, next) : areEqual;
+  };
 
   const onStateUpdate = () => {
     if (options.async) {
@@ -74,9 +74,9 @@ const restate = (stores, createState, onDispatch, initialOptions = {}) => {
     } else if (options.onUpdate) {
       options.onUpdate(trigger);
     } else {
-      trigger()
+      trigger();
     }
-  }
+  };
 
   const triggerUpdate = () => {
     const lastState = currentState;
@@ -96,11 +96,11 @@ const restate = (stores, createState, onDispatch, initialOptions = {}) => {
     subscriptions.forEach(unsubscribe => unsubscribe());
   };
 
-  const replaceOptions = (newOptions) => {
+  const replaceOptions = newOptions => {
     options = {
       ...options,
-      newOptions
-    }
+      newOptions,
+    };
   };
 
   initialize();
@@ -114,7 +114,7 @@ const restate = (stores, createState, onDispatch, initialOptions = {}) => {
 
     unsubscribe,
     update: triggerUpdate,
-    replaceOptions
+    replaceOptions,
   };
 };
 

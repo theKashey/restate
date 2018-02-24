@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shallowequal from 'shallowequal';
-import {createProvider} from 'react-redux';
+import { createProvider } from 'react-redux';
 import reduxRestate from 'redux-restate';
 import hoistStatics from 'hoist-react-statics';
 import displayName from 'react-display-name';
@@ -59,7 +59,7 @@ const restate = (baseStores, composeState, routeDispatch, options = nullFn) => W
     }
 
     componentWillReceiveProps(nextProps) {
-      if(!shallowequal(nextProps, this.props)) {
+      if (!shallowequal(nextProps, this.props)) {
         this.propsOverride = nextProps;
         this.store.replaceOptions(options(nextProps));
         this.store.update();

@@ -11,10 +11,12 @@ declare module 'redux-restate' {
     stores: { [K in keyof T]: any },
     createState: (states: { [K in keyof T]: any }) => any,
     onDispatch: (dispatches: { [K in keyof T]: any }, event: any) => void,
-    options: (props) => {
-      async?: boolean,
-      onUpdate?: (triggerUpdate: () => void) => void,
-      areStatesEqual?: (oldStore: any, newStore: any) => boolean,
+    options: (
+      props,
+    ) => {
+      async?: boolean;
+      onUpdate?: (triggerUpdate: () => void) => void;
+      areStatesEqual?: (oldStore: any, newStore: any) => boolean;
     },
   ): any;
 }

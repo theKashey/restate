@@ -14,7 +14,7 @@ const focus = (composeState, onDispatch = dispatchDefault, options) => WrappedCo
 
 // Component model
 const SECRET = '__focus_secret';
-const RenderChildren = ({children}) => children;
+const RenderChildren = ({ children }) => children;
 
 const ComponentFocus = focus(
   (store, props) => props[SECRET].composeState(store, props),
@@ -24,22 +24,24 @@ const ComponentFocus = focus(
 const focusSecret = {
   [SECRET]: {
     composeState: (store, props) => props.focus(store, props.componentProps),
-    dispatch: (dispatcher, event, props) => props.onDispatch(dispatcher, event, props.componentProps)
-  }
+    dispatch: (dispatcher, event, props) => props.onDispatch(dispatcher, event, props.componentProps),
+  },
 };
 
-const ReduxFocus = ({focus, onDispatch, children, ...rest}) => {
-  return <ComponentFocus {...focusSecret} focus={focus} onDispatch={onDispatch} componentProps={rest}>{children}</ComponentFocus>
+const ReduxFocus = ({ focus, onDispatch, children, ...rest }) => {
+  return (
+    <ComponentFocus {...focusSecret} focus={focus} onDispatch={onDispatch} componentProps={rest}>
+      {children}
+    </ComponentFocus>
+  );
 };
 
 ReduxFocus.propTypes = {
   focus: PropTypes.func.isRequired,
   onDispatch: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
-export {
-  ReduxFocus
-};
+export { ReduxFocus };
 
 export default focus;

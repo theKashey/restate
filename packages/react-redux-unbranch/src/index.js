@@ -6,38 +6,37 @@ import PropTypes from 'prop-types';
 const unbranch = () => WrappedComponent =>
   reactReduxRestate(
     {},
-    (stores) => stores.default,
+    stores => stores.default,
     (dispatchers, event) => dispatchers.default(event),
-    (props) => ({
+    props => ({
       onUpdate: trigger => props.update(trigger),
-      areStatesEqual: (newState, oldState) => props.compare(newState, oldState, props)
+      areStatesEqual: (newState, oldState) => props.compare(newState, oldState, props),
     }),
   )(WrappedComponent);
 
-const RenderChildren = ({children}) => children;
+const RenderChildren = ({ children }) => children;
 const Unbranch = unbranch()(RenderChildren);
 
 const update = trigger => trigger();
 
-const clearValues = keys => keys.reduce((acc, key) => {
-  acc[key] = undefined;
-  return acc
-}, {});
+const clearValues = keys =>
+  keys.reduce((acc, key) => {
+    acc[key] = undefined;
+    return acc;
+  }, {});
 
-const compare = (newState, oldState, {ignoreKeys, passKeys, mode = 'ignore'}) => {
+const compare = (newState, oldState, { ignoreKeys, passKeys, mode = 'ignore' }) => {
   if (mode === 'pass') {
-    return passKeys.reduce((acc, key) => acc && newState[key] === oldState[key])
+    return passKeys.reduce((acc, key) => acc && newState[key] === oldState[key]);
   }
-  return shallowequal(
-    {...newState, ...clearValues(ignoreKeys)},
-    {...oldState, ...clearValues(ignoreKeys)}
-  )
+  return shallowequal({ ...newState, ...clearValues(ignoreKeys) }, { ...oldState, ...clearValues(ignoreKeys) });
 };
 
-export const ReduxUnbranch = ({children, ignoreKeys = [], passKeys = [], mode = 'ignore'}) =>
+export const ReduxUnbranch = ({ children, ignoreKeys = [], passKeys = [], mode = 'ignore' }) => (
   <Unbranch update={update} compare={compare} ignoreKeys={ignoreKeys} passKeys={passKeys} mode={mode}>
     {children}
   </Unbranch>
+);
 
 ReduxUnbranch.propTypes = {
   ignoreKeys: PropTypes.arrayOf(PropTypes.string),

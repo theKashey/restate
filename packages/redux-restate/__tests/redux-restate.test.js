@@ -60,7 +60,7 @@ describe('redux-restate', () => {
 
     storeData1 = {
       ...storeData1,
-      change: 1
+      change: 1,
     };
 
     store1.dispatch({ type: 'event', id: 1 });
@@ -72,14 +72,13 @@ describe('redux-restate', () => {
 
     storeData1 = {
       ...storeData1,
-      change: 2
+      change: 2,
     };
 
     store2.dispatch({ type: 'event', id: 1 });
     expect(listener1).toHaveBeenCalledTimes(2);
     expect(listener2).toHaveBeenCalledTimes(2);
     expect(listenerr).toHaveBeenCalledTimes(1);
-
 
     restore.subscribe(listenerr);
 

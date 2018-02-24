@@ -12,7 +12,7 @@
     "redux",
     "restate",
     "debounce",
-    "throttle",
+    "throttle"
   ],
   "repository": {
     "type": "git",

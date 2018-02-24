@@ -1,7 +1,8 @@
 # React-redux-semaphore
+
 > (a part of [restate](https://github.com/theKashey/restate) project)
 
-Only the chosen states will pass!  
+Only the chosen states will pass!
 
 ## The problem
 
@@ -9,10 +10,10 @@ Sometimes current state of a redux state is not acceptable. Thus you may prefer 
 
 For example you did update one data source, but could display (rerender) store only after another datasource will be updated.
 
-Redux semaphore could stop update propagation, providing the old state for nested components. 
+Redux semaphore could stop update propagation, providing the old state for nested components.
 You can use react-redux-restate to join the old state, and the new state down the tree.
 
-Or you can just freeze ☃️ it out. 
+Or you can just freeze ☃️ it out.
 
 Let me cite the original Redux documentation:
 
@@ -22,40 +23,35 @@ The original Flux pattern describes having multiple “stores” in an app, each
 
 react-redux-semaphore IS that `waitFor`.
 
-
 ## Usage
 
 HOC approach.
+
 ```js
 import reduxSemaphore from 'react-redux-semaphore';
- 
-const WillUseOldStateUnlessConditionAreMet = reduxSemaphore(
-  (state, props) => isValid(store.importantData)
-)(TargetComponent)
 
+const WillUseOldStateUnlessConditionAreMet = reduxSemaphore((state, props) => isValid(store.importantData))(
+  TargetComponent,
+);
 
-const FreezableComponent = reduxSemaphore(
-  (state, props) => !props.isFreezed
-)(TargetComponent)
+const FreezableComponent = reduxSemaphore((state, props) => !props.isFreezed)(TargetComponent);
 ```
 
 Component approach
+
 ```js
-import {ReduxSemaphore} from 'react-redux-semaphore';
-const conditionFreeze =
- <ReduxSemaphore
-  condition={(state, props) => isValid(store.importantData)}
- >
-   <TargetComponent />
- </ReduxSemaphore>
- 
- 
- const propFreeze =
-  <ReduxSemaphore
-     locked
-  >
+import { ReduxSemaphore } from 'react-redux-semaphore';
+const conditionFreeze = (
+  <ReduxSemaphore condition={(state, props) => isValid(store.importantData)}>
     <TargetComponent />
   </ReduxSemaphore>
+);
+
+const propFreeze = (
+  <ReduxSemaphore locked>
+    <TargetComponent />
+  </ReduxSemaphore>
+);
 ```
 
 ## Licence

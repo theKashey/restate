@@ -1,4 +1,5 @@
 # React-redux-focus
+
 > (a part of [restate](https://github.com/theKashey/restate) project)
 
 The base layer for redux composition.
@@ -99,6 +100,7 @@ const FocusedComponent = reactReduxFocus(
 ```
 
 Oh as HOC
+
 ```js
 import { ReduxFocus } from 'react-redux-focus';
 
@@ -106,8 +108,8 @@ import { ReduxFocus } from 'react-redux-focus';
   focus={(state, props) => state.todos[props.id]}
   onDispatch={(dispatch, event, props) => dispatch({ ...event, id: props.id })}
 >
-    <WrappedComponent />
-</ReduxFocus>
+  <WrappedComponent />
+</ReduxFocus>;
 ```
 
 The same as react-redux-restate, but for a single store.

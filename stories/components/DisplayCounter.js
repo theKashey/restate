@@ -1,10 +1,10 @@
-import React from 'react'
-import {connect} from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 
-const Counter = ({counter}) => <span>{counter}</span>;
+const Counter = ({ counter }) => <span>{counter}</span>;
 
 const mapStateToProps = state => ({
-  counter: state.counter
+  counter: state.counter,
 });
 
-export default connect(mapStateToProps)(Counter)
+export default connect(mapStateToProps)(Counter);
