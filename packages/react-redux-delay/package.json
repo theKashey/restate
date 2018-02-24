@@ -1,7 +1,7 @@
 {
   "name": "react-redux-delay",
   "version": "1.2.0",
-  "description": "",
+  "description": "Throttle redux state updates.",
   "main": "lib/index.js",
   "types": "react-redux-delay.d.ts",
   "scripts": {
@@ -10,10 +10,9 @@
   "keywords": [
     "react",
     "redux",
-    "tree",
-    "update",
-    "isolate",
-    "lense"
+    "restate",
+    "debounce",
+    "throttle",
   ],
   "repository": {
     "type": "git",

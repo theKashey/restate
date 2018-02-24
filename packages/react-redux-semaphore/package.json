@@ -1,7 +1,7 @@
 {
   "name": "react-redux-semaphore",
   "version": "1.2.0",
-  "description": "",
+  "description": "Prevent update propagation you dont like, or just freeze the state",
   "main": "lib/index.js",
   "types": "react-redux-semaphore.d.ts",
   "scripts": {
@@ -10,10 +10,9 @@
   "keywords": [
     "react",
     "redux",
-    "tree",
-    "update",
-    "isolate",
-    "lense"
+    "restate",
+    "freeze",
+    "control"
   ],
   "repository": {
     "type": "git",

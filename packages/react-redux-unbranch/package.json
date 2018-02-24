@@ -1,7 +1,7 @@
 {
   "name": "react-redux-unbranch",
   "version": "1.2.0",
-  "description": "",
+  "description": "Precisely cut redux state updates, keeping it accessible",
   "main": "lib/index.js",
   "types": "react-redux-unbranch.d.ts",
   "scripts": {
@@ -10,10 +10,9 @@
   "keywords": [
     "react",
     "redux",
-    "tree",
-    "update",
-    "isolate",
-    "lense"
+    "restate",
+    "ignore",
+    "areStatesEqual"
   ],
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
 {
   "name": "react-redux-restate",
   "version": "1.2.0",
-  "description": "",
+  "description": "Reform, rewire, restate redux state, or even states",
   "main": "lib/index.js",
   "types": "react-redux-restate.d.ts",
   "scripts": {
@@ -10,6 +10,8 @@
   "keywords": [
     "react",
     "redux",
+    "restate",
+    "compose",
     "tree",
     "update",
     "isolate",
