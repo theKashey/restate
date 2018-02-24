@@ -1,6 +1,6 @@
 {
   "name": "react-redux-semaphore",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Prevent update propagation you dont like, or just freeze the state",
   "main": "lib/index.js",
   "types": "react-redux-semaphore.d.ts",
@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react-redux-restate": "^1.2.0"
+    "react-redux-restate": "^1.2.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "react-redux-unbranch",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Precisely cut redux state updates, keeping it accessible",
   "main": "lib/index.js",
   "types": "react-redux-unbranch.d.ts",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react-redux-restate": "^1.2.0",
+    "react-redux-restate": "^1.2.1",
     "shallowequal": "^1.0.2"
   }
 }
