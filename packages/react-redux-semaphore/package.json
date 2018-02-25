@@ -26,5 +26,8 @@
   "dependencies": {
     "prop-types": "^15.6.0",
     "react-redux-restate": "^1.2.1"
+  },
+  "devDependencies": {
+    "react-redux-focus": "^1.2.1"
   }
 }

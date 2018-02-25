@@ -93,20 +93,29 @@ react-display-name@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/react-display-name/-/react-display-name-0.2.3.tgz#f50204d430c9ca819bc0bade0306e9175d8d1987"
 
-react-redux-restate@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-redux-restate/-/react-redux-restate-1.0.3.tgz#5da48c3787722b03f7e4255d9f959e182f0945c4"
+react-redux-focus@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-redux-focus/-/react-redux-focus-1.2.1.tgz#245fa8740c8c7cffe6973aed597e199a9ec7e72b"
+  dependencies:
+    prop-types "^15.6.0"
+    react-redux-restate "^1.2.1"
+
+react-redux-restate@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-redux-restate/-/react-redux-restate-1.2.1.tgz#461e50595f6f94265402fae5b0e184c9d6164255"
   dependencies:
     hoist-react-statics "^1.0.1"
     prop-types "^15.6.0"
     react-display-name "^0.2.3"
-    redux-restate "^1.0.3"
+    redux-restate "^1.2.1"
+    shallowequal "^1.0.2"
 
-redux-restate@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/redux-restate/-/redux-restate-1.0.3.tgz#c99f956cf112ca3fc42b0ba380f34a99660f7c25"
+redux-restate@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/redux-restate/-/redux-restate-1.2.1.tgz#59a30c62aa84cf2c5eef07f0856a8c28fe33d758"
   dependencies:
     shallowequal "^1.0.2"
+    symbol-observable "^1.2.0"
 
 setimmediate@^1.0.5:
   version "1.0.5"
@@ -115,6 +124,10 @@ setimmediate@^1.0.5:
 shallowequal@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.0.2.tgz#1561dbdefb8c01408100319085764da3fcf83f8f"
+
+symbol-observable@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
 ua-parser-js@^0.7.9:
   version "0.7.17"
