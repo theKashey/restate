@@ -26,6 +26,12 @@ You have to use React props, to pass the `ids` you need deeply into react Tree t
 
 Redux is not composable. Redux is not component friendly.
 
+Medium articles about:
+ [Restate](https://medium.com/@antonkorzunov/restate-the-story-of-redux-tree-27d8c5d1040a)
+ , [Fractal state](https://blog.cloudboost.io/the-state-of-the-state-of-the-state-f93c8bdc6b1b)
+ .
+ 
+
 ## The borders
 
 Redux's connect method produces PureComponent.

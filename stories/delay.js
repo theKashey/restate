@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { storiesOf } from '@storybook/react';
+import React, {Component} from 'react';
+import {storiesOf} from '@storybook/react';
 
 import DisplayCounter from './components/DisplayCounter';
 import StopUpdates from './components/StopUpdates';
 
-import { ReduxDelay } from '../packages/react-redux-delay/src';
-import { ReduxFocus } from '../packages/react-redux-focus/src';
+import {ReduxDelay} from '../packages/react-redux-delay/src';
+import {ReduxFocus} from '../packages/react-redux-focus/src';
 
 class DelayTest extends Component {
   state = {
@@ -13,7 +13,7 @@ class DelayTest extends Component {
   };
 
   componentDidMount() {
-    this._tm = setInterval(() => this.setState(({ counter }) => ({ counter: counter + 1 })), 1);
+    this._tm = setInterval(() => this.setState(({counter}) => ({counter: counter + 1})), 1);
   }
 
   componentWillUnmount() {
@@ -29,17 +29,20 @@ class DelayTest extends Component {
       <div>
         <ReduxFocus focus={this.onCounter} counter={this.state.counter}>
           <div>
-            <StopUpdates>
+            <div>
+              counter1: <DisplayCounter/>
+            </div>
+            <ReduxDelay timeout={2000}>
               <div>
-                counter1: <DisplayCounter />
+                counter2: <DisplayCounter/>
               </div>
-              <StopUpdates>
-                <ReduxDelay timeout={500}>
-                  <div>
-                    counter2: <DisplayCounter />
-                  </div>
-                </ReduxDelay>
-              </StopUpdates>
+            </ReduxDelay>
+            <StopUpdates>
+              <ReduxDelay timeout={2000}>
+                <div>
+                  counter3: <DisplayCounter/>
+                </div>
+              </ReduxDelay>
             </StopUpdates>
           </div>
         </ReduxFocus>
@@ -48,4 +51,4 @@ class DelayTest extends Component {
   }
 }
 
-storiesOf('Delay', module).add('Condition', () => <DelayTest />);
+storiesOf('Delay', module).add('Condition', () => <DelayTest/>);

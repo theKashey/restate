@@ -3,19 +3,25 @@ import reactReduxRestate from 'react-redux-restate';
 import shallowequal from 'shallowequal';
 import PropTypes from 'prop-types';
 
-const unbranch = () => WrappedComponent =>
+const unbranch = (onUpdate, areStatesEqual) => WrappedComponent =>
   reactReduxRestate(
     {},
     stores => stores.default,
     (dispatchers, event) => dispatchers.default(event),
     props => ({
-      onUpdate: trigger => props.update(trigger),
-      areStatesEqual: (newState, oldState) => props.compare(newState, oldState, props),
+      onUpdate: trigger => onUpdate(trigger, props),
+      areStatesEqual: (newState, oldState) => areStatesEqual(newState, oldState, props),
     }),
   )(WrappedComponent);
 
+
+const unbranchProps = unbranch(
+  (trigger,props) => props.update(trigger),
+  (newState, oldState, props) => props.compare(newState, oldState, props),
+);
+
 const RenderChildren = ({ children }) => children;
-const Unbranch = unbranch()(RenderChildren);
+const Unbranch = unbranchProps(RenderChildren);
 
 const update = trigger => trigger();
 
@@ -41,6 +47,8 @@ export const ReduxUnbranch = ({ children, ignoreKeys = [], passKeys = [], mode =
 ReduxUnbranch.propTypes = {
   ignoreKeys: PropTypes.arrayOf(PropTypes.string),
   passKeys: PropTypes.arrayOf(PropTypes.string),
-  mode: PropTypes.string,
+  mode: PropTypes.oneOf(['pass','ignore']),
   children: PropTypes.node,
 };
+
+export default unbranch;

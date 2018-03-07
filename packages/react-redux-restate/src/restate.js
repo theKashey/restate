@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import shallowequal from 'shallowequal';
-import { createProvider } from 'react-redux';
+import {createProvider} from 'react-redux';
 import reduxRestate from 'redux-restate';
 import hoistStatics from 'hoist-react-statics';
 import displayName from 'react-display-name';
@@ -26,21 +26,38 @@ const getStores = (stores, props, context) => {
 
 const nullFn = () => ({});
 
+const noChildren = {children: undefined};
+
 const restate = (baseStores, composeState, routeDispatch, options = nullFn) => WrappedComponent => {
-  const storeKey = options.storeKey || 'store';
-  const restateKey = options.restateKey || 'store';
+  if(options && typeof options !== 'function') {
+    throw new Error('react-redux-restate: options should be an option')
+  }
+  const basicOptions = options({});
+  const storeKey = basicOptions.storeKey || 'store';
+  const restateKey = basicOptions.restateKey || 'store';
 
   const Provider = createProvider(restateKey);
 
   const contextTypes = {
     [storeKey]: PropTypes.any,
   };
+
   Object.keys(baseStores).forEach(key => {
     const value = baseStores[key];
     if (typeof value === 'string') {
       contextTypes[value] = PropTypes.any;
     }
   });
+
+  const ignoredProps = {};
+  const deeperProps = basicOptions.deeperProps || [];
+
+  (basicOptions.ignoreProps || []).forEach(prop => {ignoredProps[prop] = undefined});
+
+  const compareProps = (nextProps, currentProps, additionalIgnore = {}) => (
+    shallowequal({...nextProps, ...ignoredProps, ...additionalIgnore}, {...currentProps, ...ignoredProps, ...additionalIgnore})
+    && deeperProps.reduce((acc, line) => acc && shallowequal(nextProps[line], currentProps[line]), true)
+  );
 
   class RestateComponent extends Component {
     static contextTypes = contextTypes;
@@ -59,12 +76,16 @@ const restate = (baseStores, composeState, routeDispatch, options = nullFn) => W
     }
 
     componentWillReceiveProps(nextProps) {
-      if (!shallowequal(nextProps, this.props)) {
+      if (!compareProps(nextProps, this.props, noChildren)) {
         this.propsOverride = nextProps;
         this.store.replaceOptions(options(nextProps));
         this.store.update();
         this.propsOverride = null;
       }
+    }
+
+    shouldComponentUpdate(nextProps) {
+      return !compareProps(nextProps, this.props);
     }
 
     componentWillUnmount() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import reactReduxRestate, { ReduxRestate } from 'react-redux-restate';
+import reactReduxRestate from 'react-redux-restate';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';
@@ -8,7 +8,7 @@ const makeUpdateFunction = (mode, delay) => {
   let triggerBack = null;
   let touch = null;
 
-  if (mode === 'debonce') {
+  if (mode === 'debounce') {
     touch = debounce(() => triggerBack(), delay);
   } else {
     touch = throttle(() => triggerBack(), delay);
@@ -19,6 +19,9 @@ const makeUpdateFunction = (mode, delay) => {
   };
 };
 
+const SECRET = '__delay_secret';
+const RenderChildren = ({ children }) => children;
+
 const delay = (delay, mode, options) => WrappedComponent =>
   reactReduxRestate(
     {},
@@ -26,16 +29,15 @@ const delay = (delay, mode, options) => WrappedComponent =>
     (dispatchers, event) => dispatchers.default(event),
     props => ({
       onUpdate: makeUpdateFunction(mode, delay),
+      ignoreProps: [SECRET],
       ...options(props),
     }),
   )(WrappedComponent);
 
 // Component model
-const SECRET = '__delay_secret';
-const RenderChildren = ({ children }) => children;
 
 const ComponentDelay = delay(16, 'debounce', props => ({
-  onUpdate: makeUpdateFunction(props[SECRET].mode, props[SECRET].delay),
+  onUpdate: props[SECRET] && makeUpdateFunction(props[SECRET].mode, props[SECRET].delay),
 }))(RenderChildren);
 
 const focusSecret = (mode, delay) => ({
@@ -68,8 +70,8 @@ class ReduxDelay extends Component {
 
 ReduxDelay.propTypes = {
   mode: PropTypes.oneOf(['debounce', 'throttle']),
-  timeout: PropTypes.number,
-  children: PropTypes.node,
+  timeout: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export { ReduxDelay };

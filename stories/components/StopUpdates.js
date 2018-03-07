@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 class StopUpdate extends Component {
-  counter = 0;
-
   shouldComponentUpdate() {
     return false;
   }
+
+  counter = 0;
 
   render() {
     return <div>{this.props.children}</div>;

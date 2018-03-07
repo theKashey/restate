@@ -6,6 +6,7 @@ module.exports = {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-plusplus': 'off',
     'no-continue': 'off',
+    'no-underscore-dangle': 'off',
     'no-restricted-syntax': 'off',
     'no-prototype-builtins': 'off',
     'no-param-reassign': 'off',
