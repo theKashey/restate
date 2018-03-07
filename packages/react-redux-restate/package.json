@@ -1,6 +1,6 @@
 {
   "name": "react-redux-restate",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Reform, rewire, restate redux state, or even states",
   "main": "lib/index.js",
   "types": "react-redux-restate.d.ts",
@@ -31,7 +31,7 @@
     "hoist-react-statics": "^1.0.1",
     "prop-types": "^15.6.0",
     "react-display-name": "^0.2.3",
-    "redux-restate": "^1.2.1",
+    "redux-restate": "^1.2.2",
     "shallowequal": "^1.0.2"
   }
 }
