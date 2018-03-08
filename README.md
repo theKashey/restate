@@ -1,10 +1,21 @@
-# Restate
+<div align="center">
+  <h1>RESTATE</h1>
+  <br/>
+  <img src="./images/logo.svg" alt="restate" width="600" align="center">
+  <br/>
+ A fractal state management library. 
+  <br/>
+  <br/>
+  <br/>
+</div>
+
+Restate connects to the Redux State __AND__ to the local component state, producing a new state, you can use with, or without Redux.
 
 > Restate, re-store, redux-focus, redux-lenses, re-dux, redux-tree... Oh, it was not easy to name _The base layer for a redux composition_.
 
 The goal of Restate is to provide hierarchical, decoupled, isolated synthetic stores, and make your application faster and simpler.
 Restate just creates a new branch, from a original store, allowing you to control it, and use **composition
-on redux**-level. Before - the forbidden thing.
+on redux**-level. And it does not need Redux for it. You can use Restate without Redux, _connecting_ your components to the syntetic derived state.
 
 ```js
 import reduxRestate from 'redux-restate'; // to low-level redux manupulations
@@ -343,6 +354,8 @@ No Todo will be re-rendered if any other gonna to change
 Todo will become `isolated` from rest of application.
 
 [![Animation](images/restate-todo.gif?raw=true "Todolist")]
+
+As result __you can re-connect any existing "connected" component__.
 
 ## Licence
 
