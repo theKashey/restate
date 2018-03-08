@@ -7,7 +7,9 @@
   A fractal <u>state management</u> library. 
   <br/>
   <br/>
-  [![CircleCI status](https://img.shields.io/circleci/project/github/theKashey/memoize-state/master.svg?style=flat-square)](https://circleci.com/gh/theKashey/memoize-state/tree/master)
+  <a href="https://circleci.com/gh/theKashey/restate/tree/master">
+   <img src="https://img.shields.io/circleci/project/github/theKashey/restate/master.svg?style=flat-square)" alt="Build status">
+  </a> 
   <br/>
 </div>
 
