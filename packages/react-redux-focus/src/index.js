@@ -14,7 +14,7 @@ const focus = (composeState, onDispatch = dispatchDefault, options = {}) => Wrap
     (dispatchers, event, props) => onDispatch(dispatchers.default, event, props),
     () => ({
       ...options,
-      ignoreProps: [SECRET, 'componentProps'],
+      ignoreProps: [SECRET, 'componentProps', 'focus', 'onDispatch'],
       deeperProps: ['componentProps']
     })
   )(WrappedComponent);

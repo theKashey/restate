@@ -20,14 +20,10 @@ class DelayTest extends Component {
     clearInterval(this._tm);
   }
 
-  onCounter(state, props) {
-    return props;
-  }
-
   render() {
     return (
       <div>
-        <ReduxFocus focus={this.onCounter} counter={this.state.counter}>
+        <ReduxFocus focus={(state, props) => props} counter={this.state.counter}>
           <div>
             <div>
               counter1: <DisplayCounter/>

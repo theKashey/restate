@@ -11,7 +11,7 @@ const semaphore = shouldApplyState => WrappedComponent =>
     (stores, props) => (shouldApplyState(stores.default, props) ? stores.default : undefined),
     (dispatchers, event) => dispatchers.default(event),
     () => ({
-      ignoreProps: [SECRET]
+      ignoreProps: [SECRET, 'condition', 'componentProps']
     })
   )(WrappedComponent);
 

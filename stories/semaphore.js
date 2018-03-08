@@ -30,7 +30,7 @@ class SemaphoreTest extends Component {
     return (
       <div>
         <button onClick={this.swapLock}>{this.state.locked ? 'Unfreeze' : 'Freeze'}</button>
-        <ReduxFocus focus={this.onCounter} counter={this.state.counter}>
+        <ReduxFocus focus={(state, props) => props} counter={this.state.counter}>
           <div>
             counter1: <DisplayCounter />
           </div>
