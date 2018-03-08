@@ -5,6 +5,5 @@ machine:
 test:
 
   override:
-    - lerna build
     - lerna bootstrap
     - npm run test
