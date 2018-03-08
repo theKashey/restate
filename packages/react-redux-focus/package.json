@@ -1,6 +1,6 @@
 {
   "name": "react-redux-focus",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Focus into a specific branch of your's Redux State Tree",
   "main": "lib/index.js",
   "types": "react-redux-focus.d.ts",
