@@ -1,5 +1,3 @@
-import * as React from "react";
-
 declare module 'react-redux-focus' {
     import * as React from 'react';
 

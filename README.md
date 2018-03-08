@@ -3,9 +3,11 @@
   <br/>
   <img src="./images/logo.svg" alt="restate" width="600" align="center">
   <br/>
- A fractal state management library. 
+  <br/>
+  A fractal <u>state management</u> library. 
   <br/>
   <br/>
+  [![CircleCI status](https://img.shields.io/circleci/project/github/theKashey/memoize-state/master.svg?style=flat-square)](https://circleci.com/gh/theKashey/memoize-state/tree/master)
   <br/>
 </div>
 
