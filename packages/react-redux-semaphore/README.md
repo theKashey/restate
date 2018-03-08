@@ -2,7 +2,7 @@
 
 > (a part of [restate](https://github.com/theKashey/restate) project)
 
-Only the chosen states will pass!
+Only the chosen states will pass! This is a `redux` part of a React __Suspense__.
 
 ## The problem
 
