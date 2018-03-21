@@ -25,6 +25,8 @@ on redux**-level. And it does not need Redux for it. You can use Restate without
 import reduxRestate from 'redux-restate'; // to low-level redux manupulations
 import reactReduxRestate from 'react-redux-restate'; // to work with multiple stores
 import reactReduxFocus from 'react-redux-focus'; // to focus a lens on a single store
+import reactReduxLoop from 'react-redux-loop'; // to call React from Redux
+import reactSemaphore from 'react-redux-semaphore'; // to create *suspense* 
 ```
 
 ## The problem

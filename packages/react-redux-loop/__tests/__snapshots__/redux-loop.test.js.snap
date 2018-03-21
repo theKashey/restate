@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`React-redux-loop should loop events 1`] = `
+Object {
+  "list": Array [
+    undefined,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+  ],
+}
+`;

@@ -1,9 +1,9 @@
 {
-  "name": "react-redux-semaphore",
-  "version": "1.2.3",
-  "description": "Prevent update propagation you dont like, or just freeze the state",
+  "name": "react-redux-loop",
+  "version": "1.2.2",
+  "description": "Call redux from react, call react from redux",
   "main": "lib/index.js",
-  "types": "react-redux-semaphore.d.ts",
+  "types": "react-redux-loop.d.ts",
   "scripts": {
     "test": "echo \"tests are on repo level\" && exit 1"
   },
@@ -11,8 +11,8 @@
     "react",
     "redux",
     "restate",
-    "freeze",
-    "control"
+    "ignore",
+    "callback"
   ],
   "repository": {
     "type": "git",
@@ -21,14 +21,10 @@
   "author": "Anton Korzunov <thekashey@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^15.0.0 || ^16.0.0",
-    "react-redux": "^5.0.0"
+    "react": "^15.0.0 || ^16.0.0"
   },
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react-redux-restate": "^1.2.2"
-  },
-  "devDependencies": {
-    "react-redux-focus": "^1.2.3"
+    "react-redux": "^5.0.0"
   }
 }
