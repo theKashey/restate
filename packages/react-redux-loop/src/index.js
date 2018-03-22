@@ -38,8 +38,19 @@ const reduxLoop = actionCallback => props => (
   </ReduxLoop>
 );
 
+const ReduxTrigger = ({when, then}) => (
+  <ReduxLoop>
+    {event => event.type === when && then(event)}
+  </ReduxLoop>
+);
+ReduxTrigger.propTypes = {
+  when: PropTypes.string.isRequired,
+  then: PropTypes.func.isRequired
+};
+
 export {
   ReduxLoop,
+  ReduxTrigger,
   loopMiddleware
 };
 

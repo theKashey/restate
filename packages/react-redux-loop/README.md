@@ -41,6 +41,14 @@ import { ReduxLoop } from 'react-redux-loop';
   </ReduxUnbranch>
 ```
 
+Single-action helper function
+```js
+<ReduxTrigger 
+  when="ACTION_I_WAIT_FOR"
+  then={ (event) => consume(event)}
+/>
+```
+
 And HOC.
 ```js
 import reduxLoop from 'react-redux-loop';

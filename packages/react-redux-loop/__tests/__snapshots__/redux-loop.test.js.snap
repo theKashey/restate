@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`React-redux-loop should loop events 1`] = `
+exports[`React-redux-loop should loop events 1`] = `"<div class=\\"output\\"><ul><li></li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ul>React reflection:<ul><li>ACTION2#undefined</li><li>ACTION#1</li><li>ACTION2#2</li><li>ACTION#3</li><li>ACTION2#4</li><li>ACTION#5</li><li>ACTION2#6</li><li>ACTION#7</li><li>ACTION2#8</li><li>ACTION#9</li></ul>Trigger reflection:<ul><li>ACTION#undefined</li><li>ACTION#1</li><li>ACTION#2</li><li>ACTION#3</li><li>ACTION#4</li><li>ACTION#5</li><li>ACTION#6</li><li>ACTION#7</li><li>ACTION#8</li><li>ACTION#9</li></ul></div>"`;
+
+exports[`React-redux-loop should loop events 2`] = `
 Object {
   "list": Array [
     undefined,
