@@ -1,5 +1,17 @@
-# React-redux-loop
-Just call me.
+<div align="center">
+  <h1>React-redux-loop</h1>
+  <br/>
+  <img src="https://cdn.rawgit.com/theKashey/restate/1d67d86d/images/logo.svg" alt="restate" width="600" align="center">
+  <br/>
+  <br/>
+  Big brother is watching your redux store.
+  <br/>
+  <br/>
+  <a href="https://circleci.com/gh/theKashey/restate/tree/master">
+   <img src="https://img.shields.io/circleci/project/github/theKashey/restate/master.svg?style=flat-square)" alt="Build status">
+  </a> 
+  <br/>
+</div>
 
 > (a part of [restate](https://github.com/theKashey/restate) project)
 
@@ -43,6 +55,7 @@ import { ReduxLoop } from 'react-redux-loop';
 
 Single-action helper function
 ```js
+import { ReduxTrigger } from 'react-redux-loop';
 <ReduxTrigger 
   when="ACTION_I_WAIT_FOR"
   then={ (event) => consume(event)}

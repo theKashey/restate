@@ -1,7 +1,7 @@
 <div align="center">
   <h1>RESTATE</h1>
   <br/>
-  <img src="./images/logo.svg" alt="restate" width="600" align="center">
+  <img src="https://cdn.rawgit.com/theKashey/restate/1d67d86d/images/logo.svg" alt="restate" width="600" align="center">
   <br/>
   <br/>
   A fractal <u>state management</u> library. 

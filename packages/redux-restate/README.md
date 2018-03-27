@@ -1,4 +1,17 @@
-# Redux-restate
+<div align="center">
+  <h1>redux-restate</h1>
+  <br/>
+  <img src="https://cdn.rawgit.com/theKashey/restate/1d67d86d/images/logo.svg" alt="restate" width="600" align="center">
+  <br/>
+  <br/>
+  Restate base layer.
+  <br/>
+  <br/>
+  <a href="https://circleci.com/gh/theKashey/restate/tree/master">
+   <img src="https://img.shields.io/circleci/project/github/theKashey/restate/master.svg?style=flat-square)" alt="Build status">
+  </a> 
+  <br/>
+</div>
 
 > (a part of [restate](https://github.com/theKashey/restate) project)
 
