@@ -1,6 +1,6 @@
 {
   "name": "todos",
-  "version": "1.3.3",
+  "version": "1.3.6",
   "private": true,
   "devDependencies": {
     "enzyme": "^2.8.2",
@@ -12,8 +12,8 @@
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
     "react-redux": "^5.0.5",
-    "react-redux-focus": "^1.3.3",
-    "react-redux-restate": "^1.3.3",
+    "react-redux-focus": "^1.3.6",
+    "react-redux-restate": "^1.3.6",
     "redux": "^3.5.2"
   },
   "scripts": {
