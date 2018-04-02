@@ -1,6 +1,6 @@
 {
   "name": "react-redux-delay",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "description": "Throttle redux state updates.",
   "main": "lib/index.js",
   "types": "react-redux-delay.d.ts",
@@ -28,6 +28,6 @@
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.6.0",
-    "react-redux-restate": "^1.3.6"
+    "react-redux-restate": "^1.3.7"
   }
 }
