@@ -68,24 +68,22 @@ const restate = (baseStores, composeState, routeDispatch, options = nullFn) => W
         ...getStores(baseStores, props, context),
         default: props[storeKey] || context[storeKey],
       };
+      this.propsOverride = props;
+      this.store = reduxRestate(this.stores, this.composeState, this.routeDispatch, this.getOptions());
       this.propsOverride = null;
     }
 
-    componentWillMount() {
-      this.store = reduxRestate(this.stores, this.composeState, this.routeDispatch, this.getOptions());
+    shouldComponentUpdate(nextProps) {
+      return !compareProps(nextProps, this.props);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(nextProps) {
       if (!compareProps(nextProps, this.props, noChildren)) {
         this.propsOverride = nextProps;
         this.store.replaceOptions(options(nextProps));
         this.store.update();
         this.propsOverride = null;
       }
-    }
-
-    shouldComponentUpdate(nextProps) {
-      return !compareProps(nextProps, this.props);
     }
 
     componentWillUnmount() {
