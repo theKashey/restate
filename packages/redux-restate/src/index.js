@@ -103,7 +103,9 @@ const restate = (stores, createState, onDispatch, initialOptions = {}) => {
     };
   };
 
-  initialize();
+  if(!options.noAutoSubscribe) {
+    initialize();
+  }
 
   return {
     dispatch,
@@ -113,6 +115,7 @@ const restate = (stores, createState, onDispatch, initialOptions = {}) => {
     [$$observable]: createObservableFor(subscribe, getState),
 
     unsubscribe,
+    initialize,
     update: triggerUpdate,
     replaceOptions,
   };

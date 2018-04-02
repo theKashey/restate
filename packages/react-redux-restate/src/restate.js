@@ -73,14 +73,17 @@ const restate = (baseStores, composeState, routeDispatch, options = nullFn) => W
       this.propsOverride = null;
     }
 
+    componentDidMount(){
+      this.store.initialize();
+    }
+
     shouldComponentUpdate(nextProps) {
       return !compareProps(nextProps, this.props);
     }
 
-    componentDidUpdate(nextProps) {
-      if (!compareProps(nextProps, this.props, noChildren)) {
-        this.propsOverride = nextProps;
-        this.store.replaceOptions(options(nextProps));
+    componentDidUpdate(prevPops) {
+      if (!compareProps(prevPops, this.props, noChildren)) {
+        this.store.replaceOptions(options(this.props));
         this.store.update();
         this.propsOverride = null;
       }
@@ -91,12 +94,14 @@ const restate = (baseStores, composeState, routeDispatch, options = nullFn) => W
     }
 
     getOptions() {
-      return options(this.props);
+      return Object.assign(options(this.props), {
+        noAutoSubscribe: true
+      });
     }
 
     composeState = stores => composeState(stores, this.propsOverride || this.props);
     routeDispatch = (dispatches, event) => routeDispatch(dispatches, event, this.propsOverride || this.props);
-
+    
     render() {
       return (
         <Provider store={this.store}>
