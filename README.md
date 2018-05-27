@@ -10,6 +10,8 @@
   <a href="https://circleci.com/gh/theKashey/restate/tree/master">
    <img src="https://img.shields.io/circleci/project/github/theKashey/restate/master.svg?style=flat-square)" alt="Build status">
   </a> 
+  
+  <a href='https://greenkeeper.io/'><img src="https://badges.greenkeeper.io/theKashey/restate.svg" alt="Greenkeeper" /></a>
   <br/>
 </div>
 
@@ -30,8 +32,6 @@ import reactSemaphore from 'react-redux-semaphore'; // to create *suspense*
 ```
 
 ## The problem
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/theKashey/restate.svg)](https://greenkeeper.io/)
 
 As long React spreads component architecture and highly composable patterns,
 the major part of it - Redux - do not follow this way.
