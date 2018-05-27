@@ -1,0 +1,17 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "packages/example-todo/package.json",
+        "packages/react-redux-delay/package.json",
+        "packages/react-redux-focus/package.json",
+        "packages/react-redux-loop/package.json",
+        "packages/react-redux-restate/package.json",
+        "packages/react-redux-semaphore/package.json",
+        "packages/react-redux-unbranch/package.json",
+        "packages/redux-restate/package.json"
+      ]
+    }
+  }
+}
