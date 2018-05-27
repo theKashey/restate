@@ -31,6 +31,8 @@ import reactSemaphore from 'react-redux-semaphore'; // to create *suspense*
 
 ## The problem
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/theKashey/restate.svg)](https://greenkeeper.io/)
+
 As long React spreads component architecture and highly composable patterns,
 the major part of it - Redux - do not follow this way.
 
