@@ -9,9 +9,7 @@
   <br/>
   <a href="https://circleci.com/gh/theKashey/restate/tree/master">
    <img src="https://img.shields.io/circleci/project/github/theKashey/restate/master.svg?style=flat-square)" alt="Build status">
-  </a> 
-  
-  <a href='https://greenkeeper.io/'><img src="https://badges.greenkeeper.io/theKashey/restate.svg" alt="Greenkeeper" /></a>
+  </a> <a href='https://greenkeeper.io/'><img src="https://badges.greenkeeper.io/theKashey/restate.svg" alt="Greenkeeper" /></a>
   <br/>
 </div>
 
