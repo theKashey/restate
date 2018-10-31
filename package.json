@@ -51,7 +51,7 @@
     "redux-mock-store": "^1.4.0",
     "@storybook/react": "^3.3.12",
     "@storybook/addon-actions": "^4.0.1",
-    "@storybook/addon-links": "^3.3.12"
+    "@storybook/addon-links": "^4.0.1"
   },
   "jest": {
     "moduleDirectories": [
