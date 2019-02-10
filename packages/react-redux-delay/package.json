@@ -27,7 +27,7 @@
   "dependencies": {
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.7.0",
     "react-redux-restate": "^1.3.9"
   }
 }
