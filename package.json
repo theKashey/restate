@@ -35,7 +35,7 @@
     "babel-preset-react": "^6.5.0",
     "conventional-changelog": "^2.0.0",
     "conventional-github-releaser": "^2.0.0",
-    "eslint": "^4.14.0",
+    "eslint": "^5.15.1",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-config-prettier": "^2.6.0",
     "eslint-plugin-import": "^2.8.0",
