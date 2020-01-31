@@ -5,7 +5,7 @@
   "devDependencies": {
     "enzyme": "^3.3.0",
     "react-addons-test-utils": "^15.5.1",
-    "react-scripts": "^1.0.2"
+    "react-scripts": "^3.3.1"
   },
   "dependencies": {
     "prop-types": "^15.5.10",
